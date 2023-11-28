@@ -4,11 +4,11 @@ class AdminController < ApplicationController
   before_action :authorize_admin!
 
   def list_user
-    @users = User.all
+    @pagy, @users = pagy(User.all, items: 5)
   end
 
   def edit_user
-    @users = User.order(:id)
+    @pagy, @users = pagy(User.order(:id), items: 5)
   end
 
   def create
