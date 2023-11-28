@@ -1,0 +1,56 @@
+<%= form_with(model: @user, url: admin_create_path, method: :post) do |f| %>
+  <%= f.fields_for :user do |user_fields| %>
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="card shadow">
+            <div class="card-title text-center border-bottom">
+              <h2 class="p-3">Create new user</h2>
+            </div>
+            <div class="card-body">
+              <form>
+
+                <div class="mb-4">
+                  <%= user_fields.label :first_name %><br />
+                  <%= user_fields.text_field :first_name, autofocus: true, autocomplete: "first_name", class:'form-control'  %>
+                </div>
+
+                <div class="mb-4">
+                  <%= user_fields.label :last_name %><br />
+                  <%= user_fields.text_field :last_name, autocomplete: "last_name", class:'form-control'  %>
+                </div>
+
+                <div class="mb-4">
+                  <%= user_fields.label :email %><br />
+                  <%= user_fields.email_field :email, autocomplete: "email", class:'form-control'  %>
+                </div>
+                <div class="mb-4">
+                  <%= user_fields.label :role %><br />
+                  <%= user_fields.select :role, User.roles.keys.map { |w| [w.humanize, w] }, include_blank: "Select a role", class:'form-select' %>
+                </div>
+
+                <div class="mb-4">
+                  <%= user_fields.label :password %>
+                  <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %><br />
+                  <%= user_fields.password_field :password, autocomplete: "new-password", class:'form-control' %>
+                </div>
+
+                <div class="mb-4">
+                  <%= user_fields.label :password_confirmation %><br />
+                  <%= user_fields.password_field :password_confirmation, autocomplete: "new-password", class:'form-control' %>
+                </div>
+
+                <% end %>
+                <div>
+                  <%= f.submit "Create user", class:"btn btn-success" %>
+                </div>
+              <% end %>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

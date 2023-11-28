@@ -1,0 +1,23 @@
+<!--Listar todos los user y poder editar sus campos-->
+
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-10 col-md-6 col-sm-6">
+      <div class="card shadow">
+        <div class="card-title text-center border-bottom">
+          <h2 class="p-3">Edit user</h2>
+          </div>
+          <div class="card-body">
+            <form>
+              <% @users.each do |user| %>
+                <%= form_for(user, url: admin_path(user), remote: true, method: :patch) do |f| %>
+                  <p><%= f.text_field :email %> - <%= f.text_field :first_name %> - <%= f.text_field :last_name %> - <%= f.select(:role, User.roles.keys.map { |w| [w.humanize, w] }) %> - <%= f.submit "Update", class: "btn btn-success" %></p>
+                <% end %>
+              <% end %>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
