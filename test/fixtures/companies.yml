@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  founded: 2023-11-28
+  team_size: 1
+  website: MyString
+  location: MyString
+  about: MyText
+
+two:
+  name: MyString
+  founded: 2023-11-28
+  team_size: 1
+  website: MyString
+  location: MyString
+  about: MyText
