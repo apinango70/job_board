@@ -10,17 +10,24 @@
         </div>
         <div class="card-body">
           <form>
+            <!--Selector de foto del perfil-->
+            <div class="mb-4">
+              <%= f.label :photo, style: "display: block" %>
+              <%= f.file_field :photo, class:'form-control' %>
+            </div>
             <div class="mb-4">
                 <%= f.label :first_name, class:'form-label' %>
                 <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class:'form-control' %>
             </div>
+
             <div class="mb-4">
                 <%= f.label :last_name, class:'form-label' %>
                 <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class:'form-control' %>
             </div>
+
               <% if User.where(role: User.roles[:admin]).exists? %>
-                <!-- El administrador ya existe, ocultar el select de role y define user por defecto-->
-                <%= f.hidden_field :role, value: User.roles.key(User.roles[:user]) %>
+                <!-- El administrador ya existe, ocultar el select de roles y asigna user por defecto. -->
+                <%= f.hidden_field :role, value: User.roles[:user] %>
               <% else %>
                 <!-- El administrador no existe, mostrar el select de roles -->
                 <div class="mb-4">
